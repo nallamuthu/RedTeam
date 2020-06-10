@@ -6,10 +6,17 @@ from Crypto.Cipher import AES
 from Crypto import Random
 from arc4 import ARC4
 from itertools import *
+import sys
 
 from cryptography.fernet import Fernet
 
 '''
+def write_key():
+def load_key():
+def decrypt_file_fernet(filename, key):
+def encrypt_file_fernet(filename, key):
+def xor_file_encode(input_file_name,output_file_name,password):
+def xor_file_decode(encoded_file_name,output_file_name,password):
 def xor_data_encode(input_data,password):	-> return cipher_data
 def xor_data_decode(cipher_data,password):	-> return plain_data
 def rc4_data_encrypt(plain_data, password):	-> return cipher_data
@@ -17,6 +24,7 @@ def rc4_data_decrypt(cipher_data, password):	-> return plain_data
 def aes_data_encrypt(plain_data,aes_key):	-> return cipher_data
 def aes_data_decrypt(cipher_data,aes_key):	-> return plain_data
 '''
+
 BLOCK_SIZE = 16
 pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s) % BLOCK_SIZE)
 unpad = lambda s: s[:-ord(s[len(s) - 1:])]
@@ -32,17 +40,17 @@ def load_key():
 	return open("key.key", "rb").read()
 
 
-#Given a filename (str) and key (bytes), it encrypt the file and write it
+#Given a filename (str) and key (bytes), it encrypt the file and create encrypted file
 def encrypt_file_fernet(filename, key):
 	f = Fernet(key)
 	with open(filename, "rb") as file:
 		# read all file data
 		file_data = file.read()
 	encrypted_data = f.encrypt(file_data)
-	with open("1.enc", "wb") as file:
+	with open("Encrypted_File", "wb") as file:
 		file.write(encrypted_data)
 
-#Given a filename (str) and key (bytes), it decrypts the file and write it
+#Given a filename (str) and key (bytes), it decrypts the file and create encrypted file
 def decrypt_file_fernet(filename, key):
 	f = Fernet(key)
 	with open(filename, "rb") as file:
@@ -54,20 +62,20 @@ def decrypt_file_fernet(filename, key):
 	with open("decrpt.xlsx", "wb") as file:
 		file.write(decrypted_data)
 
-
 #Write the data to file
 def write_to_file(input_data,file_name):
 	f = open(file_name, 'wb')
 	f.write(input_data)
 	f.close()
-##
+
+#XOR Encode the Text File
 def xor_file_encode(input_file_name,output_file_name,password):
 	plain_data=open(input_file_name).read()
 	cipher_data = xor_data_encode(plain_data,password)
 	open(output_file_name, 'w').write(''.join(cipher_data))
 	return output_file_name
 
-##
+#XOR Decode the Text File
 def xor_file_decode(encoded_file_name,output_file_name,password):
 	cipher_data=open(encoded_file_name).read()
 	plain_data = xor_data_decode(cipher_data,password)
@@ -119,10 +127,13 @@ def aes_data_decrypt(cipher_data, password):
 
 write_key()
 key = load_key()
+
+#Encrypt any File
 encrypt_file_fernet('Book1.xlsx',key);
-decrypt_file_fernet('1.enc',key);
+decrypt_file_fernet("Encrypted_File",key);
+sys.exit(0)
 
-
+#Only Text File XOR Encoding
 output_file=xor_file_encode('i.txt','123_enc','hello')
 output_file=xor_file_decode('File_Enc','card.txt','hello')
 #output_file=xor_file_encode('Output.xlsx','output_file','hello')

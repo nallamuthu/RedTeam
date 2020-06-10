@@ -1,149 +1,106 @@
-import pyAesCrypt
-from Crypto.Cipher import AES
-import base64
-import hashlib
-from Crypto.Cipher import AES
-from Crypto import Random
-from arc4 import ARC4
-from itertools import *
-import sys
+import zlib
+import bz2
+import lzma
 
-from cryptography.fernet import Fernet
 
 '''
-def write_key():
-def load_key():
-def decrypt_file_fernet(filename, key):
-def encrypt_file_fernet(filename, key):
-def xor_data_encode(input_data,password):	-> return cipher_data
-def xor_data_decode(cipher_data,password):	-> return plain_data
-def rc4_data_encrypt(plain_data, password):	-> return cipher_data
-def rc4_data_decrypt(cipher_data, password):	-> return plain_data
-def aes_data_encrypt(plain_data,aes_key):	-> return cipher_data
-def aes_data_decrypt(cipher_data,aes_key):	-> return plain_data
+def bz2_data_compress(data_to_compress):	-> return compressed_data 
+def bz2_data_decompress(compressed_data):	-> return plain_data
+def zlib_data_compress(data_to_compress): 	-> return compressed_data 
+def zlib_data_decompress(compressed_data):	-> return plain_data
+def zlib_file_compress(input_file):		-> return out_file_name
+def zlib_file_decompress(compressed_file):	-> return out_file_name
 '''
 
-BLOCK_SIZE = 16
-pad = lambda s: s + (BLOCK_SIZE - len(s) % BLOCK_SIZE) * chr(BLOCK_SIZE - len(s) % BLOCK_SIZE)
-unpad = lambda s: s[:-ord(s[len(s) - 1:])]
-
-#Generates a key and save it into a file
-def write_key():
-	key = Fernet.generate_key()
-	with open("key.key", "wb") as key_file:
-		key_file.write(key)
-
-#Loads the key from the current directory named `key.key`
-def load_key():
-	return open("key.key", "rb").read()
-
-
-#Given a filename (str) and key (bytes), it encrypt the file and create encrypted file
-def encrypt_file_fernet(filename, key):
-	f = Fernet(key)
-	with open(filename, "rb") as file:
-		# read all file data
-		file_data = file.read()
-	encrypted_data = f.encrypt(file_data)
-	with open("Encrypted_File", "wb") as file:
-		file.write(encrypted_data)
-
-#Given a filename (str) and key (bytes), it decrypts the file and create encrypted file
-def decrypt_file_fernet(filename, key):
-	f = Fernet(key)
-	with open(filename, "rb") as file:
-		# read the encrypted data
-		encrypted_data = file.read()
-	# decrypt data
-	decrypted_data = f.decrypt(encrypted_data)
-	# write the original file
-	with open("decrpt.xlsx", "wb") as file:
-		file.write(decrypted_data)
 
 #Write the data to file
 def write_to_file(input_data,file_name):
 	f = open(file_name, 'wb')
 	f.write(input_data)
-	f.close()
-##
-def xor_file_encode(input_file_name,output_file_name,password):
-	plain_data=open(input_file_name).read()
-	cipher_data = xor_data_encode(plain_data,password)
-	open(output_file_name, 'w').write(''.join(cipher_data))
+	f.close()	
+
+
+
+def lzma_data_compress(data_to_compress):
+	compressed_data = lzma.compress(data_to_compress)
+	with lzma.open("file", "wb") as f:
+		f.write(compressed_data)
+	return compressed_data
+
+
+def lzma_data_decompress(compressed_data):
+	plain_data = lzma.decompress(compressed_data)
+	return plain_data
+
+
+
+#Compress the data - bz2
+def bz2_data_compress(data_to_compress):
+	compressed_data  = bz2.compress(data_to_compress)
+	return compressed_data
+
+#Decompress the compressed data - bz2
+def bz2_data_decompress(compressed_data):
+	plain_data = bz2.decompress(compressed_data)
+	return plain_data
+
+
+def bz2_file_compress(input_file_name,output_file_name):
+	plan_data=open(input_file_name, 'rb').read()
+	output = bz2.BZ2File(output_file_name, 'wb')
+	output.write(plan_data)
+	output.close()
 	return output_file_name
 
-##
-def xor_file_decode(encoded_file_name,output_file_name,password):
-	cipher_data=open(encoded_file_name).read()
-	plain_data = xor_data_decode(cipher_data,password)
-	open(output_file_name, 'w').write(''.join(plain_data))
+
+def bz2_file_decompress(compressed_file,output_file_name):
+	input_file  = bz2.BZ2File(input_file, 'rb')
+	input_file.read()
+	input_file.close()
 	return output_file_name
 
+#Compress the data - zlib
+def zlib_data_compress(data_to_compress):
+	compressed_data = zlib.compress(data_to_compress, 2)
+	return compressed_data
 
-##Decode Data - XOR
-def xor_data_encode(input_data,password):
-	cipher_data = ''.join(chr(ord(x) ^ ord(y)) for (x,y) in zip(input_data, cycle(password)))
-	return cipher_data
-
-##Decode Data - XOR
-def xor_data_decode(cipher_data,password):
-	plain_data = ''.join(chr(ord(x) ^ ord(y)) for (x,y) in zip(cipher_data, cycle(password)))
+#Decompress the compressed data - zlib
+def zlib_data_decompress(compressed_data):
+	plain_data = zlib.decompress(compressed_data)
 	return plain_data
 
+#Compress file - zlib
+def zlib_file_compress(input_file_name,output_file_name):
+	original_data = open(input_file_name, 'rb').read()
+	compressed_data = zlib.compress(original_data, zlib.Z_BEST_COMPRESSION)
+	write_to_file(compressed_data,output_file_name)
+	return output_file_name
 
-##Encrypt Data - RC4
-def rc4_data_encrypt(plain_data, password):
-	arc4 = ARC4(password)
-	cipher_data = arc4.encrypt(plain_data)
-	return cipher_data
-
-##Decrypt Data - RC4
-def rc4_data_decrypt(cipher_data, password):
-	arc4 = ARC4(password)
-	plain_data=arc4.decrypt(cipher_data)
-	return plain_data
-
-#Encrypt Data - AES
-def aes_data_encrypt(plain_data, password):
-	private_key = hashlib.sha256(password.encode("utf-8")).digest()
-	plain_data = pad(plain_data)
-	iv = Random.new().read(AES.block_size)
-	cipher = AES.new(private_key, AES.MODE_CBC, iv)
-	cipher_data = base64.b64encode(iv + cipher.encrypt(plain_data))
-	return cipher_data
- 
-#Decrypt Data - AES
-def aes_data_decrypt(cipher_data, password):
-	private_key = hashlib.sha256(password.encode("utf-8")).digest()
-	cipher_data = base64.b64decode(cipher_data)
-	iv = cipher_data[:16]
-	cipher = AES.new(private_key, AES.MODE_CBC, iv)
-	plain_data= unpad(cipher.decrypt(cipher_data[16:]))
-	return plain_data
+#Compress file - zlib
+def zlib_file_decompress(compressed_file,output_file_name):
+	compressed_data = open(compressed_file, 'rb').read()
+	original_data = zlib.decompress(compressed_data)
+	write_to_file(original_data,out_file_name)
+	return out_file_name
+	
 
 
-write_key()
-key = load_key()
 
-#Encrypt any File
-encrypt_file_fernet('Book1.xlsx',key);
-decrypt_file_fernet("Encrypted_File",key);
-sys.exit(0)
-
-#Only Text File XOR Encoding
-output_file=xor_file_encode('i.txt','123_enc','hello')
-output_file=xor_file_decode('File_Enc','card.txt','hello')
-#output_file=xor_file_encode('Output.xlsx','output_file','hello')
-
-cipher_data=aes_data_encrypt('hello','852')
-print(cipher_data)
-plain_data=aes_data_decrypt(cipher_data,'852')
+my_data = b'Hello world'
+compressed_data=lzma_data_compress(my_data)
+print(compressed_data)
+plain_data=lzma_data_decompress(compressed_data)
 print(plain_data)
-cipher_data=rc4_data_encrypt('hello','852')
-print(cipher_data)
-plain_data=rc4_data_decrypt(cipher_data,'852')
+
+compressed_data=zlib_data_compress(my_data)
+print(compressed_data)
+plain_data=zlib_data_decompress(compressed_data)
 print(plain_data)
-cipher_data=xor_data_encode('hello','852')
-print(cipher_data)
-plain_data=xor_data_decode(cipher_data,'852')
+compressed_data=bz2_data_compress(my_data)
+print(compressed_data)
+plain_data=bz2_data_decompress(compressed_data)
 print(plain_data)
+out_file_name=zlib_file_compress('Output.xlsx','compressed_file')
+print(out_file_name)
+out_file_name=zlib_file_decompress('compressed_file','uncompress_file')
+print(out_file_name)
