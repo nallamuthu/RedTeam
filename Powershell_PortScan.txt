@@ -1,0 +1,14 @@
+Check Port or Single IP:
+Test-NetConnection -Port 80 192.168.1.1
+
+Check Port Range in single IP
+1..1024 | % {echo ((new-object Net.Sockets.TcpClient).Connect("192.168.1.1",$_)) "Port $_ is open!"} 2>$null
+
+Check Port List in Single IP
+80,443,8080 | % {echo ((new-object Net.Sockets.TcpClient).Connect("192.168.1.1",$_)) "Port $_ is open!"} 2>$null
+
+Check Port List in IP List
+"192.168.1.1","10.1.1.2" | % { $a = $_; write-host " — — — "; write-host "$a"; 80,443,445,8080 | % {echo ((new-object Net.Sockets.TcpClient).Connect("$a",$_)) "Port $_ is open!"} 2>$null}
+
+Check Port List in IP List from File
+Get-Content .\ip.txt | % { $a = $_; write-host " — — — "; write-host "$a"; 80,443,445,8080 | % {echo ((new-object Net.Sockets.TcpClient).Connect("$a",$_)) "Port $_ is open!"} 2>$null}
