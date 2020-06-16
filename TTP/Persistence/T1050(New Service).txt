@@ -1,0 +1,6 @@
+https://github.com/faisal5170/WindowsService
+https://dzone.com/articles/create-windows-services-in-c
+
+
+
+SC CREATE Plex Displayname= "Plex" binpath= "bin_path.exe" start= auto

