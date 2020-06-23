@@ -318,7 +318,7 @@ Gpup.exe -w whatever -e c:\Windows\System32\calc.exe
 
 Execution - CITRIX
 C:\Program Files (x86)\Citrix\ICA Client\Drivers64\Usbinst.exe
-Usbinst.exe InstallHinfSection "DefaultInstall 128 c:\temp\citrix.inf"
+Usbinst.exe InstallHinfSection "DefaultInstall 128 C:\Users\Public\citrix.inf"
 
 Compiler
 C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe
