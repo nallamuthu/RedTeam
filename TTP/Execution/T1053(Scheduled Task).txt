@@ -1,9 +1,7 @@
+*****at*****
 at 8am /EVERY:M,T,W,Th,F,S,Su cmd /c c:\myapp.exe
 
+*****schtasks*****
 Schtasks /create /RU administrator /RP adminpassword /SC weekly /D SAT /TN defrag /TR c:\windows\system32\defrag.exe /ST 10:00:00
-
-
 SchTasks /Create /SC DAILY /TN “My Task” /TR “C:RunMe.bat” /ST 09:00
-
-
 schtasks /delete /TN task_name

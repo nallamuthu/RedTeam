@@ -1,8 +1,8 @@
-sDelete
+*****sDelete*****
 https://docs.microsoft.com/en-us/sysinternals/downloads/sdelete
 sdelete64.exe -s tmp-master\key_stroke.log
 
-CCleaner
+*****CCleaner*****
 https://www.ccleaner.com/ccleaner/download
 1. Download the portable CCCleaner
 2. In the options->setting Enable the secure deletion
@@ -11,5 +11,5 @@ https://www.ccleaner.com/ccleaner/download
 5. Run Cleaner
 
 
-cipher - Command to Delete Files Securely
+*****cipher*****
 cipher /w:C:\tmp-master\

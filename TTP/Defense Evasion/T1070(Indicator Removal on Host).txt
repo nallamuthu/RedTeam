@@ -1,13 +1,13 @@
-Command - del
+*****Command - del*****
 cd windows
 del *.log /a /s /q /f
 
-Powershell:
+*****Powershell*****
 Clear-Eventlog -Log Application, System
 Get-WinEvent -ListLog Application,Setup,Security -Force | % { Wevtutil.exe cl $_.Logname }
 
 
-wevtutil
+*****wevtutil*****
 wevtutil clear-log Application
 wevtutil clear-log Security
 wevtutil clear-log Setup
@@ -16,7 +16,7 @@ wevtutil clear-log System
 for /f %x in ('wevtutil el') do wevtutil cl "%x"
 
 
-wmic
+*****wmic*****
 wmic nteventlog where filename='application' cleareventlog
 wmic nteventlog where filename='system' cleareventlog
 wmic nteventlog where filename='security' cleareventlog

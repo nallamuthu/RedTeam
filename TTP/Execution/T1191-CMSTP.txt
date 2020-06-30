@@ -1,2 +1,3 @@
+*****CMSTP*****
 Execute INF file
 cmstp.exe /ni /s c:\Users\Public\config.inf     
