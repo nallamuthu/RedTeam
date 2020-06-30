@@ -1,0 +1,3 @@
+UPX Compression
+https://upx.github.io/
+upx.exe -9 -o output.exe mimikatz.exe

