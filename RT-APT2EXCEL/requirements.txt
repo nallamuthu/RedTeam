@@ -1,0 +1,3 @@
+xlsxwriter
+bs4
+json
